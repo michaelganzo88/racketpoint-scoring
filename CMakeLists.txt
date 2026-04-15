@@ -4,7 +4,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # ── Core library ──────────────────────────────────────────────────────────────
-add_library(racketpoint_scoring STATIC padel_scoring.c)
+add_library(racketpoint_scoring STATIC padel_scoring.c rp_ffi.c)
 target_include_directories(racketpoint_scoring PUBLIC .)
 
 # ── Test executable ───────────────────────────────────────────────────────────

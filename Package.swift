@@ -14,7 +14,7 @@ let package = Package(
             name: "RacketPointScoring",
             path: ".",
             exclude: ["tests", "CMakeLists.txt"],
-            sources: ["padel_scoring.c"],
+            sources: ["padel_scoring.c", "rp_ffi.c"],
             publicHeadersPath: "."
         )
     ]
