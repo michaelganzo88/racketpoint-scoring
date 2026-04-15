@@ -31,11 +31,6 @@ final class RPHandle extends Opaque {}
 
 // ── Raw function lookups ───────────────────────────────────────────────────────
 
-final RPHandle Function(int mode, int goldenAdvantages, bool firstServeA)
-    rp_create = _lib.lookupFunction<
-        Pointer<RPHandle> Function(Int32, Int32, Bool),
-        RPHandle Function(int, int, bool)>('rp_create') as dynamic;
-
 // We use Pointer<RPHandle> throughout so GC doesn't collect the native pointer.
 
 final Pointer<RPHandle> Function(int mode, int goldenAdvantages,
