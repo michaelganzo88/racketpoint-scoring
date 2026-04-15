@@ -6,17 +6,15 @@ import 'dart:io';
 // ── Load the native library ────────────────────────────────────────────────────
 
 DynamicLibrary _openLib() {
-  if (Platform.isMacOS) {
-    return DynamicLibrary.open('libracketpoint_scoring.dylib');
+  if (Platform.isMacOS || Platform.isIOS) {
+    // CocoaPods links C sources directly into the host process.
+    return DynamicLibrary.process();
   }
   if (Platform.isLinux || Platform.isAndroid) {
     return DynamicLibrary.open('libracketpoint_scoring.so');
   }
   if (Platform.isWindows) {
     return DynamicLibrary.open('racketpoint_scoring.dll');
-  }
-  if (Platform.isIOS) {
-    return DynamicLibrary.process();
   }
   throw UnsupportedError(
       'racketpoint_scoring: unsupported platform ${Platform.operatingSystem}');
