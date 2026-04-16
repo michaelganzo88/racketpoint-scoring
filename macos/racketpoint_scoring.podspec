@@ -10,11 +10,7 @@ Pod::Spec.new do |s|
   s.author           = { 'RacketPoint' => 'info@racketpoint.app' }
   s.source           = { :path => '.' }
 
-  # C sources (relative to this podspec, which lives in macos/)
-  s.source_files     = '../padel_scoring.{h,c}',
-                       '../rp_ffi.{h,c}',
-                       '../scoring.h'
-
+  # No source_files — SPM builds the dynamic framework; CocoaPods just wires up the Flutter plugin registration.
   s.dependency 'FlutterMacOS'
   s.platform         = :osx, '10.14'
 

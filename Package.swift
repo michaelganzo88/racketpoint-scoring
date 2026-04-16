@@ -4,8 +4,10 @@ import PackageDescription
 let package = Package(
     name: "RacketPointScoring",
     products: [
+        // dynamic so that dlsym(RTLD_DEFAULT) can find rp_* symbols at runtime
         .library(
             name: "RacketPointScoring",
+            type: .dynamic,
             targets: ["RacketPointScoring"]
         )
     ],
