@@ -75,6 +75,11 @@ typedef struct {
     int  setHistoryA[5];
     int  setHistoryB[5];
     int  completedSets;
+    /* Win target for the current tiebreak.
+     * 0 = standard in-set tiebreak at 6-6 (target 7, history recorded as 7-6).
+     * 10 = super tiebreak replacing the deciding set (history records actual points).
+     * Reset to 0 automatically after the tiebreak ends. */
+    int  tiebreakWinAt;
     /* True while a tie-break is in progress (triggered at 6-6 games). */
     bool tiebreak;
     /* True = Team A is currently serving. Alternates after every game. */

@@ -89,12 +89,19 @@ void rp_padel_score_point(RPPadelState* state, bool teamA) {
         if (teamA) s->pointsA++; else s->pointsB++;
 
         int a = s->pointsA, b = s->pointsB;
-        /* Tie-break ends at ≥7 with a 2-point lead */
-        if ((a >= 7 || b >= 7) && abs(a - b) >= 2) {
-            /* Record set as 7-6 / 6-7 */
+        /* Win target: 7 for standard in-set tiebreak; tiebreakWinAt for super tiebreak. */
+        int winAt = s->tiebreakWinAt > 0 ? s->tiebreakWinAt : 7;
+        if ((a >= winAt || b >= winAt) && abs(a - b) >= 2) {
             if (s->completedSets < 5) {
-                s->setHistoryA[s->completedSets] = teamA ? 7 : 6;
-                s->setHistoryB[s->completedSets] = teamA ? 6 : 7;
+                if (s->tiebreakWinAt > 0) {
+                    /* Super tiebreak (deciding set): record actual points (e.g. 10-7). */
+                    s->setHistoryA[s->completedSets] = a;
+                    s->setHistoryB[s->completedSets] = b;
+                } else {
+                    /* Standard in-set tiebreak at 6-6: record as game totals 7-6. */
+                    s->setHistoryA[s->completedSets] = teamA ? 7 : 6;
+                    s->setHistoryB[s->completedSets] = teamA ? 6 : 7;
+                }
                 s->completedSets++;
             }
             if (teamA) s->setsWonA++; else s->setsWonB++;
@@ -105,6 +112,7 @@ void rp_padel_score_point(RPPadelState* state, bool teamA) {
             s->gamesA            = 0;
             s->gamesB            = 0;
             s->tiebreak          = false;
+            s->tiebreakWinAt     = 0;
             s->advTaken          = 0;
             s->deuceReturns      = 0;
             s->teamAHasAdvantage = false;
