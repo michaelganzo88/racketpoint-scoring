@@ -3,6 +3,10 @@ import PackageDescription
 
 let package = Package(
     name: "RacketPointScoring",
+    platforms: [
+        .iOS(.v13),
+        .watchOS(.v8)
+    ],
     products: [
         // dynamic so that dlsym(RTLD_DEFAULT) can find rp_* symbols at runtime
         .library(
