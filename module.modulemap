@@ -1,0 +1,6 @@
+module RacketPointScoring {
+    header "padel_scoring.h"
+    header "scoring.h"
+    header "rp_ffi.h"
+    export *
+}
