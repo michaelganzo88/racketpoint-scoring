@@ -15,9 +15,9 @@ let package = Package(
         .target(
             name: "RacketPointScoring",
             path: ".",
-            exclude: ["tests", "CMakeLists.txt"],
+            exclude: ["tests", "CMakeLists.txt", "pubspec.yaml", "lib", "linux", "macos", "windows"],
             sources: ["padel_scoring.c", "rp_ffi.c"],
-            publicHeadersPath: "."
+            publicHeadersPath: "include"
         )
     ]
 )
